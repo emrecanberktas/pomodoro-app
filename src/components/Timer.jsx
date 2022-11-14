@@ -1,3 +1,4 @@
+import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
 
 function Timer() {
@@ -5,6 +6,12 @@ function Timer() {
   const [second, setSecond] = useState(0);
 
   const [isRunning, setIsRunning] = useState(false);
+
+  // Reset timer
+  const resetTimer = () => {
+    setMinute(15);
+    setSecond(0);
+  };
 
   useEffect(() => {
     let interval = null;
@@ -30,12 +37,15 @@ function Timer() {
 
   return (
     <div>
-      <h1>
-        {minute}:{second}
-      </h1>
+      <Box sx={{ display: "flex" }}>
+        <h1>
+          {minute}:{second < 10 ? `0${second}` : second}
+        </h1>
+      </Box>
       <button onClick={() => setIsRunning(!isRunning)}>
         {isRunning ? "Pause" : "Start"}
       </button>
+      <button onClick={resetTimer}>Stop</button>
     </div>
   );
 }

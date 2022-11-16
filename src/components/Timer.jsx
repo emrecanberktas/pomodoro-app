@@ -1,8 +1,9 @@
+import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
 
 function Timer() {
-  const [minute, setMinute] = useState(15);
+  const [minute, setMinute] = useState(1);
   const [second, setSecond] = useState(0);
 
   const [isRunning, setIsRunning] = useState(false);
@@ -37,15 +38,19 @@ function Timer() {
 
   return (
     <div>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <h1>
           {minute}:{second < 10 ? `0${second}` : second}
         </h1>
       </Box>
-      <button onClick={() => setIsRunning(!isRunning)}>
-        {isRunning ? "Pause" : "Start"}
-      </button>
-      <button onClick={resetTimer}>Stop</button>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Button variant="contained" onClick={() => setIsRunning(!isRunning)}>
+          {isRunning ? "Pause" : "Start"}
+        </Button>
+        <Button variant="contained" onClick={resetTimer}>
+          Stop
+        </Button>
+      </Box>
     </div>
   );
 }
